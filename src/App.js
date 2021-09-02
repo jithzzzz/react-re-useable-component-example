@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import ReactDOM from "react-dom";
+import FormInput from "./components/FormInput.js";
+import Dashboard from "./Dashboard.js";
 
-function App() {
+function App(props) {
+  const [inputValue, setInputValue] = useState('')
+  function handleChange(event) {
+    setInputValue(event)
+    console.log(event)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App" style={{margin:30, padding:30}}>
+      <form>
+        <FormInput type={"text"} onChange={handleChange} />
+        <FormInput type={"email"} onChange={handleChange} />
+        <button onClick={()=>{ console.log(inputValue)}}>Press</button>
+      </form>
+      <Dashboard/>
     </div>
   );
 }
